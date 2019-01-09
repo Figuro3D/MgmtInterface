@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            body {
+                background-color: #e5e5e5;
+                font-family: sans-serif;
+                font-size: 120%;
+            }
+
+            #navbar {
+                overflow:hidden;
+                text-align: center;
+                padding-bottom: 20px;
+            }
+            
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #333;
+                position: sticky;
+                top: 0;
+                border: #333;
+                color: black;
+            }
+            
+            li {
+                float: left;
+                height: 46px;
+                padding-bottom: 4px;
+            }
+            
+            #logo {
+                width: 50px;
+            }
+            
+            li a {
+                float: left;
+                display: block;
+                color: white;
+                background-color: #333;
+                text-align: center;
+                padding: 14px;
+                text-decoration: none;
+            }
+
+            li a:hover:not(.active) {
+                background-color: #111;
+            }
+
+            .active {
+                background-color: rgb(255, 115, 0);
+            } 
+        </style>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <script type="text/javascript">
+        
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title:{
+                    text: "My First Chart in CanvasJS"              
+                },
+                data: [              
+                {
+                    // Change type to "doughnut", "line", "splineArea", etc.
+                    type: "column",
+                    dataPoints: [
+                        { label: "apple",  y: 10  },
+                        { label: "orange", y: 15  },
+                        { label: "banana", y: 25  },
+                        { label: "mango",  y: 30  },
+                        { label: "grape",  y: 28  }
+                    ]
+                }
+                ]
+            });
+            chart.render();
+        }
+        </script>
+        <script src="canvasjs/dist/canvasjs.js"></script>
+    </head>
+    <body>
+        <nav id="navbar">
+            <ul>
+                <li id="logo">   
+                    <img src="/Users/josephmccombs/figuro3d/userInterface/fig3d-logo.png" alt="Figuro3D logo" width="50px" height="50px" />
+                </li>
+                <li><a class="active" href="index.html">Dashboard</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div id="graph" style="width:600px;height:400px;"></div>
+        <div id="chartContainer" style="height: 300px; width:100%;"></div>
+    </body>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+        google.charts.load('current', {'packages':['line']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'Month');
+        data.addColumn('number', 'Valve Open');
+        data.addColumn('number', 'Color');
+        data.addColumn('number', 'Direction');
+
+        data.addRows([
+            [1, 2, 4, 6],
+            [2, 4, 0, 2],
+            [3, 1, 5, 0],
+            [4, 1, 3, 2],
+            [5, 2, 4, 6],
+            [6, 4, 2, 1],
+            [7, 3, 2, 1],
+            [8, 1, 2, 3],
+            [9, 3, 6, 9],
+            [10, 4, 7, 10],
+            [11, 3, 5, 2],
+            [12, 0, 1, 2],
+        ]);
+
+
+        var options = {
+            chart: {
+            title: 'Failures Among Componenets',
+            subtitle: 'Per Month'
+            },
+            width: 900,
+            height: 500,
+        };
+
+        var chart = new google.charts.Line(document.getElementById('graph'));
+
+        chart.draw(data, google.charts.Line.convertOptions(options));
+        } 
+    </script>
+</html>
