@@ -55,8 +55,50 @@
             .active {
                 background-color: rgb(255, 115, 0);
             } 
+
+            .dropbtn {
+                background-color: rgb(255, 115, 0);
+                color: black;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: white;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba (0, 0, 0, 0.2);
+                z-index: 1;
+            }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown-content a:hover {
+                background-color: rgb(255, 115, 0);
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .dropdown:hover .dropbtn {
+                background-color: rgb(255, 115, 0);
+            }
         </style>
-        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <!--
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
         <script type="text/javascript">
         
         window.onload = function () {
@@ -80,8 +122,9 @@
             });
             chart.render();
         }
-        </script>
+        </script> 
         <script src="canvasjs/dist/canvasjs.js"></script>
+    -->
     </head>
     <body>
         <nav id="navbar">
@@ -93,10 +136,45 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        <div id="graph" style="width:600px;height:400px;"></div>
-        <div id="chartContainer" style="height: 300px; width:100%;"></div>
+        <h3>Overall Defect Rate: 5%</h3>
+
+        <div id="graph" style="width:40%;height:400px;"></div>
+        <div id="chartContainer" style="height: 300px; width:40%;"></div>
+        <div id="piechart" style="width:900px; height:500px"></div>
+        <div class="dropdown">
+            <button class="dropbtn">Error Pictures</button>
+            <div class="dropdown-content">
+                <a href="badValve.html">Bad Valve</a>
+                <a href="badOrientation.html">Bad Orientation</a>
+                <a href="badBaseColor.html">Bad Base Color</a>
+            </div>
+        </div>
     </body>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+    
+            function drawChart() {
+    
+            var data = google.visualization.arrayToDataTable([
+                ['Part', 'Defects'],
+                ['Base Color',     11],
+                ['Valve Open Direction',      2],
+                ['Valve Closed',  2],
+                ['Valve Color', 2],
+                ['Warning Label',    7]
+            ]);
+    
+            var options = {
+                title: 'Defects per Part'
+            };
+    
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    
+            chart.draw(data, options);
+            }
+        </script>
         <script type="text/javascript">
         google.charts.load('current', {'packages':['line']});
         google.charts.setOnLoadCallback(drawChart);
@@ -138,5 +216,52 @@
 
         chart.draw(data, google.charts.Line.convertOptions(options));
         } 
+/*
+        var mysql = require('mysql');
+
+var connection = mysql.createConnection({
+        host:'localhost',
+        user: 'root',
+        password: 'Jam46635',
+        database: 'EPIDatabase',
+});
+
+connection.connect((err) => {
+    if(err) throw err;
+    console.log("Connection successfully established");
+    
+    var sql = "INSERT INTO partTest (Part, Result) VALUES ?";
+    
+    var values = [
+        ['Base Color', 1],
+        ['Valve Open Direction', 0],
+        ['Valve Closed', 1],
+        ['Valve Color', 0],
+        ['Warning Label', 1],
+        ['Weight Label', 0],
+        ['Product Serial Number', 1],
+        ['Screws Inserted', 0],
+        ['Fitting', 1],
+        ['Lid', 0],
+        ['Tank Size', 1]
+    ];
+
+    connection.query(sql, [values], function (err, result) {
+        if (err) throw err;
+        console.log("Number of records inserted: " + result.affectedRows);
+    });
+
+/*
+    connection.query('SELECT 1 + 1 AS solution', function (error, results, fields){
+        if (error) throw error;
+        console.log('The solution is: ', results[0].soltion);
+    });
+
+    connection.end(() => {
+        console.log("Connection successfully Closed.");
+    });
+ 
+});
+*/
     </script>
 </html>
