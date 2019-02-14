@@ -71,11 +71,17 @@
             }
 
             #barchart_material {
-                width: 50%;
-                float: right;
+                width: 30%;
                 padding-bottom: 100px;
+                position: absolute;
+                left: 950px;
+                top: 150px;
+            }
 
-
+             #barchart_filter {
+                position: absolute;
+                left: 825px;
+                top: 150px;
             }
             /* Table styling for images */
             #myInput {
@@ -168,17 +174,15 @@
                 padding-left: 35px;
             }
             
-            #barchart_filter {
-                color: blue;
-                position: absolute;
-                left: 840px;
-                top: 50px;
-            }
+           ul.google-visualization-controls-categoryfilter-selected {
+               max-width: 117px;
+           }
 
             .filterControls .google-visualization-controls-categoryfilter-selected li {
-                background-color: black;
-                border: 1px solid #ff9800;
-                color: #ffffff;
+                width: 100px;
+                background-color: rgb(181, 209, 247);
+                border: 2px solid rgb(14, 45, 131);
+                color: black;
                 padding: 6px;
                 font-size: 50%;
                 padding-bottom: 6px;
@@ -190,6 +194,15 @@
                 float: right;
                 margin-left: 4px;
             }
+
+            .filterControls label {
+                font: 50%;
+            }
+        
+            .goog-menu-button {
+                font-size: 65%;
+            }
+
 
         </style>
 
@@ -349,7 +362,7 @@
             dataTable: data,
             options: {
                 title: 'Failures Per Month, By Component',
-                width: 800,
+                width: 700,
                 height: 400,
                 isStacked: true
             }
@@ -363,10 +376,11 @@
                 filterColumnLabel: 'colLabel',
                 ui: {
                     label: 'Component',
+                    labelStacking: 'vertical',
                     allowTyping: false,
                     allowMultiple: true,
                     allowNone: false,
-                    selectedValuesLayout: 'aside',
+                    selectedValuesLayout: 'belowStacked',
                     cssClass: 'filterControls'
                 }
             },
@@ -392,7 +406,7 @@
         }
 
         google.visualization.events.addListener(columnFilter, 'statechange', setChartView);
-    
+
         setChartView();
         columnFilter.draw();
         }
@@ -404,11 +418,11 @@
         <nav id="navbar">
             <ul>
                 <li id="logo">   
-                    <img src="pictures/fig3d-logo-black.png" alt="Figuro3D logo" width="50px" height="50px" />
+                    <img src="pictures/fig3d-logo1.png" alt="Figuro3D logo" width="50px" height="50px" />
                 </li>
                 <li><a class="active" href="index.html">Dashboard</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li id="epiLogo"><img src="pictures/elkhartlogo1.png" alt="Elkart Plastics Logo" width="100px" height="50px"></li>
+                <li id="epiLogo"><img src="pictures/epilogo.jpg" alt="Elkart Plastics Logo" width="100px" height="50px"></li>
             </ul>
         </nav>
         <div id="leftSide">
@@ -429,9 +443,11 @@
         <div id="searchBar">
             <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Start date..">
         </div>
+        <!-- END DATE SEARCH BAR
         <div id="searchBarDate">
                 <input type="text" id="myInput2" onkeyup="searchFunction()" placeholder="End date..">
             </div>
+        -->
         <div id="searchBarId">
             <input type="text" id="myInputId" onkeyup="searchFunctionId()" placeholder="Search for ID..">
         </div>
@@ -448,7 +464,7 @@
             <th style="width:10%">Field 5</th>
         </tr>
         <tr>
-            <td>2019-01-20</td>
+            <td>01-20-2019</td>
             <td>1</td>
             <td>Pass</td>
             <td><a href="badValve.html">Image</a></td>
@@ -460,7 +476,7 @@
             <td><a href="badValve.html">Image</a></td>
         </tr>
         <tr>
-            <td>2019-01-21</td>
+            <td>01-20-2019</td>
             <td>3</td>
             <td>Pass</td>
             <td><a href="badValve.html">Image</a></td>
@@ -484,7 +500,7 @@
             <td><a href="badValve.html">Image</a></td>
         </tr>
         <tr>
-            <td>2019-01-22</td>
+            <td>01-22-2019</td>
             <td>7</td>
             <td>Pass</td>
             <td><a href="badValve.html">Image</a></td>
@@ -502,13 +518,13 @@
             <td><a href="badValve.html">Image</a></td>
         </tr>
         <tr>
-            <td>2019-01-23</td>
+            <td>01-23-2019</td>
             <td>10</td>
             <td>Pass</td>
             <td><a href="badValve.html">Image</a></td>
         </tr>
         <tr>
-            <td>2019-01-24</td>
+            <td>01-24-2019</td>
             <td>11</td>
             <td>Fail</td>
             <td><a href="badValve.html">Image</a></td>
